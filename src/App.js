@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import HomePages from "./pages/HomePages";
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import ProductDetailsPage from "./pages/ProductDetailsPage";
+import RegisterPage from "./pages/RegisterPage";
+import ProductListPage from "./pages/ProductListPage";
+import CartPages from "./pages/CartPages";
+import LoginPage from "./pages/LoginPage";
+import UserProfilePage from "./user/UserProfilePage";
+import UserCartDetails from "./user/UserCartDetails";
+import UserOrderDetail from "./user/UserOrderDetail";
+import ProtectedRoutesComponents from "./Component/ProtectedRoutesComponents";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <BrowserRouter>
+  <Routes>
+  <Route path="/" element={<HomePages/>}/>
+ <Route path="/product-list" element={<ProductListPage/>}/>
+ <Route path="/product-detail" element={<ProductDetailsPage/>}/>
+<Route path="/cart" element={<CartPages/>}/> 
+ <Route path="/login" element={<LoginPage/>}/>
+ <Route path="/register" element={<RegisterPage/>}/>
+
+ <Route path="*" element="hhhhhh"/>
+<Route element={<ProtectedRoutesComponents/>}>
+<Route path="/user" element={<UserProfilePage/>}/>
+<Route path="/user/my-orders" element={<UserOrderDetail/>}/>
+<Route path="/user/cart-details" element={<UserCartDetails/>}/>
+<Route path="/user/order-details" element={<UserOrderDetail/>} />
+</Route>
+  </Routes>
+  
+   
+   </BrowserRouter>
+  
+    
   );
 }
 
